@@ -1,6 +1,12 @@
 The purpose of this project is to track location of lora equiped beer drinkers
 
-Test of firebase and networked a-frame
+
+
+https://os.mbed.com/teams/Semtech/code/LoRaWAN-NAMote72-Application-Demo/
+
+https://www.thethingsnetwork.org/forum/t/rak811-tracker-board/11006/234
+
+
 
 To develop,
  ```
