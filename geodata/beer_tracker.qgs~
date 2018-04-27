@@ -43,10 +43,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>degrees</units>
     <extent>
-      <xmin>18.06579230548825521</xmin>
-      <ymin>59.26958105841938362</ymin>
-      <xmax>18.12829230548825521</xmax>
-      <ymax>59.33208105841938362</ymax>
+      <xmin>18.06763451082931127</xmin>
+      <ymin>59.29718303408044022</ymin>
+      <xmax>18.09888451082931127</xmax>
+      <ymax>59.32843303408044022</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -134,7 +134,6 @@
       </resourceMetadata>
       <customproperties>
         <property key="identify/format" value="Undefined"/>
-        <property key="qgis2web/Visible" value="true"/>
       </customproperties>
       <provider>wms</provider>
       <noData>
@@ -274,11 +273,6 @@
       <customproperties>
         <property key="dualview/previewExpressions" value="&quot;fid&quot;"/>
         <property key="embeddedWidgets/count" value="0"/>
-        <property key="qgis2web/Visible" value="true"/>
-        <property key="qgis2web/popup/description" value="no label"/>
-        <property key="qgis2web/popup/fid" value="no label"/>
-        <property key="qgis2web/popup/id" value="header label"/>
-        <property key="qgis2web/popup/model" value="no label"/>
         <property key="variableNames"/>
         <property key="variableValues"/>
       </customproperties>
@@ -588,8 +582,6 @@ def my_form_open(dialog, layer, feature):
           <value>fid</value>
         </property>
         <property key="embeddedWidgets/count" value="0"/>
-        <property key="qgis2web/Visible" value="true"/>
-        <property key="qgis2web/popup/fid" value="no label"/>
         <property key="variableNames"/>
         <property key="variableValues"/>
       </customproperties>
@@ -708,29 +700,6 @@ def my_form_open(dialog, layer, feature):
       <DrawRectOnly type="bool">false</DrawRectOnly>
       <DrawOutlineLabels type="bool">true</DrawOutlineLabels>
     </PAL>
-    <qgis2web>
-      <Extent type="QString">Canvas extent</Extent>
-      <Showpopupsonhover type="bool">false</Showpopupsonhover>
-      <Minzoomlevel type="QString">1</Minzoomlevel>
-      <Highlightonhover type="bool">true</Highlightonhover>
-      <Precision type="QString">maintain</Precision>
-      <Geolocateuser type="bool">false</Geolocateuser>
-      <Exportfolder type="QString">C:\Users\Olof\AppData\Local\Temp\qgis2web</Exportfolder>
-      <Usedebuglibraries type="bool">false</Usedebuglibraries>
-      <MatchprojectCRS type="bool">false</MatchprojectCRS>
-      <mapFormat type="QString">leaflet</mapFormat>
-      <Mappinglibrarylocation type="QString">Local</Mappinglibrarylocation>
-      <Template type="QString">full-screen</Template>
-      <MinifyGeoJSONfiles type="bool">false</MinifyGeoJSONfiles>
-      <Exporter type="QString">folder</Exporter>
-      <Maxzoomlevel type="QString">24</Maxzoomlevel>
-      <Addlayerslist type="QString">None</Addlayerslist>
-      <Addaddresssearch type="bool">false</Addaddresssearch>
-      <Restricttoextent type="bool">false</Restricttoextent>
-      <Layersearch type="QString">gateways: id</Layersearch>
-      <Measuretool type="QString">Metric</Measuretool>
-      <Searchlayer type="QString">gateways_1</Searchlayer>
-    </qgis2web>
     <Measurement>
       <AreaUnits type="QString"></AreaUnits>
       <DistanceUnits type="QString"></DistanceUnits>
