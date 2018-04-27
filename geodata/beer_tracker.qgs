@@ -18,35 +18,38 @@
   </projectCrs>
   <layer-tree-group>
     <customproperties/>
-    <layer-tree-layer source="./route.gpkg|layername=route" providerKey="ogr" expanded="1" id="route_18f1e16c_0fb3_40ff_be8a_5e821951bee7" name="route" checked="Qt::Checked">
+    <layer-tree-group expanded="1" checked="Qt::Checked" name="tracker">
       <customproperties/>
-    </layer-tree-layer>
-    <layer-tree-layer source="./gateways.gpkg|layername=gateways" providerKey="ogr" expanded="1" id="gateways_3bd62d97_5cf5_4942_983c_835067893926" name="gateways" checked="Qt::Checked">
-      <customproperties/>
-    </layer-tree-layer>
-    <layer-tree-layer source="crs=EPSG:3857&amp;format&amp;type=xyz&amp;url=http://mt0.google.com/vt/lyrs%3Ds%26hl%3Den%26x%3D%7Bx%7D%26y%3D%7By%7D%26z%3D%7Bz%7D&amp;zmax=18&amp;zmin=0" providerKey="wms" expanded="1" id="Googel_satelite_145721cb_92ec_49f4_8d65_e92bd46786c1" name="Googel satelite" checked="Qt::Checked">
-      <customproperties/>
-    </layer-tree-layer>
+      <layer-tree-layer expanded="1" source="./route.gpkg|layername=route" providerKey="ogr" id="route_18f1e16c_0fb3_40ff_be8a_5e821951bee7" checked="Qt::Checked" name="route">
+        <customproperties/>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="1" source="./gateways.gpkg|layername=gateways" providerKey="ogr" id="gateways_3bd62d97_5cf5_4942_983c_835067893926" checked="Qt::Checked" name="gateways">
+        <customproperties/>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="0" source="crs=EPSG:3857&amp;format&amp;type=xyz&amp;url=http://mt0.google.com/vt/lyrs%3Ds%26hl%3Den%26x%3D%7Bx%7D%26y%3D%7By%7D%26z%3D%7Bz%7D&amp;zmax=18&amp;zmin=0" providerKey="wms" id="Googel_satelite_145721cb_92ec_49f4_8d65_e92bd46786c1" checked="Qt::Checked" name="Googel satelite">
+        <customproperties/>
+      </layer-tree-layer>
+    </layer-tree-group>
     <custom-order enabled="0">
       <item>gateways_3bd62d97_5cf5_4942_983c_835067893926</item>
       <item>Googel_satelite_145721cb_92ec_49f4_8d65_e92bd46786c1</item>
       <item>route_18f1e16c_0fb3_40ff_be8a_5e821951bee7</item>
     </custom-order>
   </layer-tree-group>
-  <snapping-settings type="1" unit="1" intersection-snapping="0" mode="2" enabled="0" tolerance="12">
+  <snapping-settings type="1" enabled="0" intersection-snapping="0" mode="2" unit="1" tolerance="12">
     <individual-layer-settings>
-      <layer-setting type="1" units="1" enabled="0" tolerance="12" id="gateways_3bd62d97_5cf5_4942_983c_835067893926"/>
-      <layer-setting type="1" units="1" enabled="0" tolerance="12" id="route_18f1e16c_0fb3_40ff_be8a_5e821951bee7"/>
+      <layer-setting type="1" enabled="0" id="gateways_3bd62d97_5cf5_4942_983c_835067893926" tolerance="12" units="1"/>
+      <layer-setting type="1" enabled="0" id="route_18f1e16c_0fb3_40ff_be8a_5e821951bee7" tolerance="12" units="1"/>
     </individual-layer-settings>
   </snapping-settings>
   <relations/>
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>degrees</units>
     <extent>
-      <xmin>18.06579230548825521</xmin>
-      <ymin>59.26958105841938362</ymin>
-      <xmax>18.12829230548825521</xmax>
-      <ymax>59.33208105841938362</ymax>
+      <xmin>18.07267395442442748</xmin>
+      <ymin>59.2958443562917239</ymin>
+      <xmax>18.10392395442442748</xmax>
+      <ymax>59.3270943562917239</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -64,26 +67,28 @@
     <rendermaptile>0</rendermaptile>
   </mapcanvas>
   <legend updateDrawingOrder="true">
-    <legendlayer drawingOrder="-1" open="true" showFeatureCount="0" checked="Qt::Checked" name="route">
-      <filegroup hidden="false" open="true">
-        <legendlayerfile layerid="route_18f1e16c_0fb3_40ff_be8a_5e821951bee7" visible="1" isInOverview="0"/>
-      </filegroup>
-    </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" showFeatureCount="0" checked="Qt::Checked" name="gateways">
-      <filegroup hidden="false" open="true">
-        <legendlayerfile layerid="gateways_3bd62d97_5cf5_4942_983c_835067893926" visible="1" isInOverview="0"/>
-      </filegroup>
-    </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" showFeatureCount="0" checked="Qt::Checked" name="Googel satelite">
-      <filegroup hidden="false" open="true">
-        <legendlayerfile layerid="Googel_satelite_145721cb_92ec_49f4_8d65_e92bd46786c1" visible="1" isInOverview="0"/>
-      </filegroup>
-    </legendlayer>
+    <legendgroup open="true" checked="Qt::Checked" name="tracker">
+      <legendlayer drawingOrder="-1" showFeatureCount="0" open="true" checked="Qt::Checked" name="route">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" layerid="route_18f1e16c_0fb3_40ff_be8a_5e821951bee7" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" showFeatureCount="0" open="true" checked="Qt::Checked" name="gateways">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" layerid="gateways_3bd62d97_5cf5_4942_983c_835067893926" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" showFeatureCount="0" open="false" checked="Qt::Checked" name="Googel satelite">
+        <filegroup hidden="false" open="false">
+          <legendlayerfile isInOverview="0" layerid="Googel_satelite_145721cb_92ec_49f4_8d65_e92bd46786c1" visible="1"/>
+        </filegroup>
+      </legendlayer>
+    </legendgroup>
   </legend>
   <mapViewDocks/>
   <mapViewDocks3D/>
   <projectlayers>
-    <maplayer type="raster" autoRefreshEnabled="0" maxScale="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" minScale="1e+8" autoRefreshTime="0" refreshOnNotifyEnabled="0">
+    <maplayer type="raster" maxScale="0" refreshOnNotifyEnabled="0" minScale="1e+8" refreshOnNotifyMessage="" autoRefreshTime="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <extent>
         <xmin>-20037508.34278924390673637</xmin>
         <ymin>-20037508.34278925508260727</ymin>
@@ -138,13 +143,13 @@
       </customproperties>
       <provider>wms</provider>
       <noData>
-        <noDataList useSrcNoData="0" bandNo="1"/>
+        <noDataList bandNo="1" useSrcNoData="0"/>
       </noData>
       <map-layer-style-manager current="default">
         <map-layer-style name="default"/>
       </map-layer-style-manager>
       <pipe>
-        <rasterrenderer type="singlebandcolordata" band="1" opacity="1" alphaBand="-1">
+        <rasterrenderer type="singlebandcolordata" opacity="1" band="1" alphaBand="-1">
           <rasterTransparency/>
           <minMaxOrigin>
             <limits>None</limits>
@@ -156,12 +161,12 @@
           </minMaxOrigin>
         </rasterrenderer>
         <brightnesscontrast contrast="0" brightness="0"/>
-        <huesaturation colorizeBlue="128" grayscaleMode="0" colorizeOn="0" colorizeStrength="100" colorizeGreen="128" saturation="0" colorizeRed="255"/>
+        <huesaturation colorizeGreen="128" colorizeRed="255" saturation="0" colorizeStrength="100" colorizeOn="0" colorizeBlue="128" grayscaleMode="0"/>
         <rasterresampler maxOversampling="2"/>
       </pipe>
       <blendMode>0</blendMode>
     </maplayer>
-    <maplayer geometry="Point" labelsEnabled="0" type="vector" simplifyDrawingHints="0" autoRefreshEnabled="0" simplifyDrawingTol="1" simplifyMaxScale="1" maxScale="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" readOnly="0" minScale="1e+8" simplifyLocal="1" autoRefreshTime="0" simplifyAlgorithm="0" refreshOnNotifyEnabled="0">
+    <maplayer type="vector" readOnly="0" maxScale="0" simplifyMaxScale="1" simplifyLocal="1" refreshOnNotifyEnabled="0" simplifyDrawingHints="0" simplifyAlgorithm="0" minScale="1e+8" labelsEnabled="0" refreshOnNotifyMessage="" geometry="Point" autoRefreshTime="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0" simplifyDrawingTol="1">
       <extent>
         <xmin>17.82479999999999976</xmin>
         <ymin>59.29039999999999822</ymin>
@@ -208,7 +213,7 @@
           </spatialrefsys>
         </crs>
         <extent>
-          <spatial crs="" minx="0" dimensions="2" minz="0" miny="0" maxx="0" maxz="0" maxy="0"/>
+          <spatial dimensions="2" minx="0" miny="0" maxx="0" maxy="0" crs="" maxz="0" minz="0"/>
           <temporal>
             <period>
               <start></start>
@@ -236,28 +241,28 @@
         <map-layer-style name="default"/>
       </map-layer-style-manager>
       <auxiliaryLayer/>
-      <renderer-v2 type="singleSymbol" enableorderby="0" symbollevels="0" forceraster="0">
+      <renderer-v2 type="singleSymbol" symbollevels="0" forceraster="0" enableorderby="0">
         <symbols>
-          <symbol type="marker" alpha="1" clip_to_extent="1" name="0">
-            <layer enabled="1" class="SimpleMarker" pass="0" locked="0">
-              <prop k="angle" v="0"/>
-              <prop k="color" v="72,123,182,255"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="name" v="circle"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="50,87,128,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.4"/>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="diameter"/>
-              <prop k="size" v="4"/>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
+          <symbol type="marker" clip_to_extent="1" alpha="1" name="0">
+            <layer enabled="1" locked="0" pass="0" class="SimpleMarker">
+              <prop v="0" k="angle"/>
+              <prop v="72,123,182,255" k="color"/>
+              <prop v="1" k="horizontal_anchor_point"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="circle" k="name"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="50,87,128,255" k="outline_color"/>
+              <prop v="solid" k="outline_style"/>
+              <prop v="0.4" k="outline_width"/>
+              <prop v="3x:0,0,0,0,0,0" k="outline_width_map_unit_scale"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="diameter" k="scale_method"/>
+              <prop v="4" k="size"/>
+              <prop v="3x:0,0,0,0,0,0" k="size_map_unit_scale"/>
+              <prop v="MM" k="size_unit"/>
+              <prop v="1" k="vertical_anchor_point"/>
               <data_defined_properties>
                 <Option type="Map">
                   <Option type="QString" value="" name="name"/>
@@ -286,12 +291,12 @@
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
       <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
-        <DiagramCategory scaleBasedVisibility="0" diagramOrientation="Up" enabled="0" lineSizeScale="3x:0,0,0,0,0,0" width="15" minScaleDenominator="0" rotationOffset="270" opacity="1" penAlpha="255" sizeType="MM" maxScaleDenominator="1e+8" backgroundColor="#ffffff" height="15" penWidth="0" sizeScale="3x:0,0,0,0,0,0" minimumSize="0" scaleDependency="Area" backgroundAlpha="255" labelPlacementMethod="XHeight" penColor="#000000" lineSizeType="MM" barWidth="5">
+        <DiagramCategory sizeType="MM" scaleBasedVisibility="0" scaleDependency="Area" sizeScale="3x:0,0,0,0,0,0" penWidth="0" barWidth="5" lineSizeScale="3x:0,0,0,0,0,0" penColor="#000000" maxScaleDenominator="1e+8" penAlpha="255" minimumSize="0" width="15" minScaleDenominator="0" backgroundColor="#ffffff" rotationOffset="270" enabled="0" diagramOrientation="Up" backgroundAlpha="255" opacity="1" height="15" lineSizeType="MM" labelPlacementMethod="XHeight">
           <fontProperties style="" description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0"/>
-          <attribute label="" field="" color="#000000"/>
+          <attribute label="" color="#000000" field=""/>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings obstacle="0" dist="0" showAll="1" placement="0" priority="0" linePlacementFlags="18" zIndex="0">
+      <DiagramLayerSettings showAll="1" zIndex="0" linePlacementFlags="18" obstacle="0" priority="0" dist="0" placement="0">
         <properties>
           <Option type="Map">
             <Option type="QString" value="" name="name"/>
@@ -339,16 +344,16 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default field="fid" applyOnUpdate="0" expression=""/>
-        <default field="model" applyOnUpdate="0" expression=""/>
-        <default field="description" applyOnUpdate="0" expression=""/>
-        <default field="id" applyOnUpdate="0" expression=""/>
+        <default expression="" field="fid" applyOnUpdate="0"/>
+        <default expression="" field="model" applyOnUpdate="0"/>
+        <default expression="" field="description" applyOnUpdate="0"/>
+        <default expression="" field="id" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint unique_strength="1" field="fid" notnull_strength="1" constraints="3" exp_strength="0"/>
-        <constraint unique_strength="0" field="model" notnull_strength="0" constraints="0" exp_strength="0"/>
-        <constraint unique_strength="0" field="description" notnull_strength="0" constraints="0" exp_strength="0"/>
-        <constraint unique_strength="0" field="id" notnull_strength="0" constraints="0" exp_strength="0"/>
+        <constraint notnull_strength="1" unique_strength="1" field="fid" exp_strength="0" constraints="3"/>
+        <constraint notnull_strength="0" unique_strength="0" field="model" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" unique_strength="0" field="description" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" unique_strength="0" field="id" exp_strength="0" constraints="0"/>
       </constraints>
       <constraintExpressions>
         <constraint exp="" field="fid" desc=""/>
@@ -359,13 +364,13 @@
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
       </attributeactions>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns>
-          <column width="-1" type="field" hidden="0" name="fid"/>
-          <column width="-1" type="field" hidden="0" name="model"/>
-          <column width="-1" type="field" hidden="0" name="description"/>
-          <column width="-1" type="field" hidden="0" name="id"/>
-          <column width="-1" type="actions" hidden="1"/>
+          <column type="field" hidden="0" width="-1" name="fid"/>
+          <column type="field" hidden="0" width="-1" name="model"/>
+          <column type="field" hidden="0" width="-1" name="description"/>
+          <column type="field" hidden="0" width="-1" name="id"/>
+          <column type="actions" hidden="1" width="-1"/>
         </columns>
       </attributetableconfig>
       <editform>.</editform>
@@ -398,10 +403,10 @@ def my_form_open(dialog, layer, feature):
         <field editable="1" name="model"/>
       </editable>
       <labelOnTop>
-        <field name="description" labelOnTop="0"/>
-        <field name="fid" labelOnTop="0"/>
-        <field name="id" labelOnTop="0"/>
-        <field name="model" labelOnTop="0"/>
+        <field labelOnTop="0" name="description"/>
+        <field labelOnTop="0" name="fid"/>
+        <field labelOnTop="0" name="id"/>
+        <field labelOnTop="0" name="model"/>
       </labelOnTop>
       <widgets/>
       <conditionalstyles>
@@ -412,12 +417,12 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>fid</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer geometry="Line" labelsEnabled="0" type="vector" simplifyDrawingHints="1" autoRefreshEnabled="0" simplifyDrawingTol="1" simplifyMaxScale="1" maxScale="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" readOnly="0" minScale="1e+8" simplifyLocal="1" autoRefreshTime="0" simplifyAlgorithm="0" refreshOnNotifyEnabled="0">
+    <maplayer type="vector" readOnly="0" maxScale="0" simplifyMaxScale="1" simplifyLocal="1" refreshOnNotifyEnabled="0" simplifyDrawingHints="1" simplifyAlgorithm="0" minScale="1e+8" labelsEnabled="0" refreshOnNotifyMessage="" geometry="Line" autoRefreshTime="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0" simplifyDrawingTol="1">
       <extent>
-        <xmin>18.07151259075720162</xmin>
-        <ymin>59.30196490382210328</ymin>
-        <xmax>18.0990347512138996</xmax>
-        <ymax>59.31851951620190277</ymax>
+        <xmin>18.07150000000000034</xmin>
+        <ymin>59.3019999999999996</ymin>
+        <xmax>18.0990000000000002</xmax>
+        <ymax>59.31850000000000023</ymax>
       </extent>
       <id>route_18f1e16c_0fb3_40ff_be8a_5e821951bee7</id>
       <datasource>./route.gpkg|layername=route</datasource>
@@ -459,7 +464,7 @@ def my_form_open(dialog, layer, feature):
           </spatialrefsys>
         </crs>
         <extent>
-          <spatial crs="" minx="0" dimensions="2" minz="0" miny="0" maxx="0" maxz="0" maxy="0"/>
+          <spatial dimensions="2" minx="0" miny="0" maxx="0" maxy="0" crs="" maxz="0" minz="0"/>
           <temporal>
             <period>
               <start></start>
@@ -487,87 +492,87 @@ def my_form_open(dialog, layer, feature):
         <map-layer-style name="default"/>
       </map-layer-style-manager>
       <auxiliaryLayer/>
-      <renderer-v2 type="singleSymbol" enableorderby="0" symbollevels="0" forceraster="0">
+      <renderer-v2 type="singleSymbol" symbollevels="0" forceraster="0" enableorderby="0">
         <symbols>
-          <symbol type="line" alpha="1" clip_to_extent="1" name="0">
-            <layer enabled="1" class="SimpleLine" pass="0" locked="0">
-              <prop k="capstyle" v="round"/>
-              <prop k="customdash" v="5;2"/>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="customdash_unit" v="MM"/>
-              <prop k="draw_inside_polygon" v="0"/>
-              <prop k="joinstyle" v="round"/>
-              <prop k="line_color" v="227,26,28,255"/>
-              <prop k="line_style" v="solid"/>
-              <prop k="line_width" v="1.86"/>
-              <prop k="line_width_unit" v="MM"/>
-              <prop k="offset" v="0"/>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="use_custom_dash" v="0"/>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <symbol type="line" clip_to_extent="1" alpha="1" name="0">
+            <layer enabled="1" locked="0" pass="0" class="SimpleLine">
+              <prop v="round" k="capstyle"/>
+              <prop v="5;2" k="customdash"/>
+              <prop v="3x:0,0,0,0,0,0" k="customdash_map_unit_scale"/>
+              <prop v="MM" k="customdash_unit"/>
+              <prop v="0" k="draw_inside_polygon"/>
+              <prop v="round" k="joinstyle"/>
+              <prop v="227,26,28,255" k="line_color"/>
+              <prop v="solid" k="line_style"/>
+              <prop v="1.86" k="line_width"/>
+              <prop v="MM" k="line_width_unit"/>
+              <prop v="0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="0" k="use_custom_dash"/>
+              <prop v="3x:0,0,0,0,0,0" k="width_map_unit_scale"/>
               <effect type="effectStack" enabled="1">
                 <effect type="dropShadow">
-                  <prop k="blend_mode" v="13"/>
-                  <prop k="blur_level" v="10"/>
-                  <prop k="color" v="0,0,0,255"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="0"/>
-                  <prop k="offset_angle" v="135"/>
-                  <prop k="offset_distance" v="2"/>
-                  <prop k="offset_unit" v="MM"/>
-                  <prop k="offset_unit_scale" v="3x:0,0,0,0,0,0"/>
-                  <prop k="opacity" v="1"/>
+                  <prop v="13" k="blend_mode"/>
+                  <prop v="10" k="blur_level"/>
+                  <prop v="0,0,0,255" k="color"/>
+                  <prop v="2" k="draw_mode"/>
+                  <prop v="0" k="enabled"/>
+                  <prop v="135" k="offset_angle"/>
+                  <prop v="2" k="offset_distance"/>
+                  <prop v="MM" k="offset_unit"/>
+                  <prop v="3x:0,0,0,0,0,0" k="offset_unit_scale"/>
+                  <prop v="1" k="opacity"/>
                 </effect>
                 <effect type="outerGlow">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="blur_level" v="3"/>
-                  <prop k="color1" v="0,0,255,255"/>
-                  <prop k="color2" v="0,255,0,255"/>
-                  <prop k="color_type" v="0"/>
-                  <prop k="discrete" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="opacity" v="0.5"/>
-                  <prop k="rampType" v="gradient"/>
-                  <prop k="single_color" v="239,41,41,255"/>
-                  <prop k="spread" v="2"/>
-                  <prop k="spread_unit" v="MM"/>
-                  <prop k="spread_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop v="0" k="blend_mode"/>
+                  <prop v="3" k="blur_level"/>
+                  <prop v="0,0,255,255" k="color1"/>
+                  <prop v="0,255,0,255" k="color2"/>
+                  <prop v="0" k="color_type"/>
+                  <prop v="0" k="discrete"/>
+                  <prop v="2" k="draw_mode"/>
+                  <prop v="1" k="enabled"/>
+                  <prop v="0.5" k="opacity"/>
+                  <prop v="gradient" k="rampType"/>
+                  <prop v="239,41,41,255" k="single_color"/>
+                  <prop v="2" k="spread"/>
+                  <prop v="MM" k="spread_unit"/>
+                  <prop v="3x:0,0,0,0,0,0" k="spread_unit_scale"/>
                 </effect>
                 <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="opacity" v="1"/>
+                  <prop v="0" k="blend_mode"/>
+                  <prop v="2" k="draw_mode"/>
+                  <prop v="1" k="enabled"/>
+                  <prop v="1" k="opacity"/>
                 </effect>
                 <effect type="innerShadow">
-                  <prop k="blend_mode" v="13"/>
-                  <prop k="blur_level" v="10"/>
-                  <prop k="color" v="0,0,0,255"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="offset_angle" v="135"/>
-                  <prop k="offset_distance" v="2"/>
-                  <prop k="offset_unit" v="MM"/>
-                  <prop k="offset_unit_scale" v="3x:0,0,0,0,0,0"/>
-                  <prop k="opacity" v="0.146"/>
+                  <prop v="13" k="blend_mode"/>
+                  <prop v="10" k="blur_level"/>
+                  <prop v="0,0,0,255" k="color"/>
+                  <prop v="2" k="draw_mode"/>
+                  <prop v="1" k="enabled"/>
+                  <prop v="135" k="offset_angle"/>
+                  <prop v="2" k="offset_distance"/>
+                  <prop v="MM" k="offset_unit"/>
+                  <prop v="3x:0,0,0,0,0,0" k="offset_unit_scale"/>
+                  <prop v="0.146" k="opacity"/>
                 </effect>
                 <effect type="innerGlow">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="blur_level" v="3"/>
-                  <prop k="color1" v="0,0,255,255"/>
-                  <prop k="color2" v="0,255,0,255"/>
-                  <prop k="color_type" v="0"/>
-                  <prop k="discrete" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="0"/>
-                  <prop k="opacity" v="0.386"/>
-                  <prop k="rampType" v="gradient"/>
-                  <prop k="single_color" v="255,255,255,255"/>
-                  <prop k="spread" v="2"/>
-                  <prop k="spread_unit" v="MM"/>
-                  <prop k="spread_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop v="0" k="blend_mode"/>
+                  <prop v="3" k="blur_level"/>
+                  <prop v="0,0,255,255" k="color1"/>
+                  <prop v="0,255,0,255" k="color2"/>
+                  <prop v="0" k="color_type"/>
+                  <prop v="0" k="discrete"/>
+                  <prop v="2" k="draw_mode"/>
+                  <prop v="0" k="enabled"/>
+                  <prop v="0.386" k="opacity"/>
+                  <prop v="gradient" k="rampType"/>
+                  <prop v="255,255,255,255" k="single_color"/>
+                  <prop v="2" k="spread"/>
+                  <prop v="MM" k="spread_unit"/>
+                  <prop v="3x:0,0,0,0,0,0" k="spread_unit_scale"/>
                 </effect>
               </effect>
               <data_defined_properties>
@@ -584,9 +589,7 @@ def my_form_open(dialog, layer, feature):
         <sizescale/>
       </renderer-v2>
       <customproperties>
-        <property key="dualview/previewExpressions">
-          <value>fid</value>
-        </property>
+        <property key="dualview/previewExpressions" value="fid"/>
         <property key="embeddedWidgets/count" value="0"/>
         <property key="qgis2web/Visible" value="true"/>
         <property key="qgis2web/popup/fid" value="no label"/>
@@ -597,11 +600,12 @@ def my_form_open(dialog, layer, feature):
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
       <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
-        <DiagramCategory scaleBasedVisibility="0" diagramOrientation="Up" enabled="0" lineSizeScale="3x:0,0,0,0,0,0" width="15" minScaleDenominator="0" rotationOffset="270" opacity="1" penAlpha="255" sizeType="MM" maxScaleDenominator="1e+8" backgroundColor="#ffffff" height="15" penWidth="0" sizeScale="3x:0,0,0,0,0,0" minimumSize="0" scaleDependency="Area" backgroundAlpha="255" labelPlacementMethod="XHeight" penColor="#000000" lineSizeType="MM" barWidth="5">
+        <DiagramCategory sizeType="MM" scaleBasedVisibility="0" scaleDependency="Area" sizeScale="3x:0,0,0,0,0,0" penWidth="0" barWidth="5" lineSizeScale="3x:0,0,0,0,0,0" penColor="#000000" maxScaleDenominator="1e+8" penAlpha="255" minimumSize="0" width="15" minScaleDenominator="0" backgroundColor="#ffffff" rotationOffset="270" enabled="0" diagramOrientation="Up" backgroundAlpha="255" opacity="1" height="15" lineSizeType="MM" labelPlacementMethod="XHeight">
           <fontProperties style="" description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0"/>
+          <attribute label="" color="#000000" field=""/>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings obstacle="0" dist="0" showAll="1" placement="2" priority="0" linePlacementFlags="18" zIndex="0">
+      <DiagramLayerSettings showAll="1" zIndex="0" linePlacementFlags="18" obstacle="0" priority="0" dist="0" placement="2">
         <properties>
           <Option type="Map">
             <Option type="QString" value="" name="name"/>
@@ -625,10 +629,10 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default field="fid" applyOnUpdate="0" expression=""/>
+        <default expression="" field="fid" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint unique_strength="1" field="fid" notnull_strength="1" constraints="3" exp_strength="0"/>
+        <constraint notnull_strength="1" unique_strength="1" field="fid" exp_strength="0" constraints="3"/>
       </constraints>
       <constraintExpressions>
         <constraint exp="" field="fid" desc=""/>
@@ -636,10 +640,10 @@ def my_form_open(dialog, layer, feature):
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
       </attributeactions>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns>
-          <column width="-1" type="field" hidden="0" name="fid"/>
-          <column width="-1" type="actions" hidden="1"/>
+          <column type="field" hidden="0" width="-1" name="fid"/>
+          <column type="actions" hidden="1" width="-1"/>
         </columns>
       </attributetableconfig>
       <editform>.</editform>
@@ -669,7 +673,7 @@ def my_form_open(dialog, layer, feature):
         <field editable="1" name="fid"/>
       </editable>
       <labelOnTop>
-        <field name="fid" labelOnTop="0"/>
+        <field labelOnTop="0" name="fid"/>
       </labelOnTop>
       <widgets/>
       <conditionalstyles>
@@ -687,69 +691,69 @@ def my_form_open(dialog, layer, feature):
     <layer id="route_18f1e16c_0fb3_40ff_be8a_5e821951bee7"/>
   </layerorder>
   <properties>
-    <Paths>
-      <Absolute type="bool">false</Absolute>
-    </Paths>
     <PositionPrecision>
       <DecimalPlaces type="int">2</DecimalPlaces>
       <Automatic type="bool">true</Automatic>
     </PositionPrecision>
-    <Legend>
-      <filterByMap type="bool">false</filterByMap>
-    </Legend>
-    <PAL>
-      <CandidatesLine type="int">50</CandidatesLine>
-      <CandidatesPolygon type="int">30</CandidatesPolygon>
-      <ShowingCandidates type="bool">false</ShowingCandidates>
-      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
-      <SearchMethod type="int">0</SearchMethod>
-      <CandidatesPoint type="int">16</CandidatesPoint>
-      <ShowingAllLabels type="bool">false</ShowingAllLabels>
-      <DrawRectOnly type="bool">false</DrawRectOnly>
-      <DrawOutlineLabels type="bool">true</DrawOutlineLabels>
-    </PAL>
     <qgis2web>
-      <Extent type="QString">Canvas extent</Extent>
-      <Showpopupsonhover type="bool">false</Showpopupsonhover>
-      <Minzoomlevel type="QString">1</Minzoomlevel>
-      <Highlightonhover type="bool">true</Highlightonhover>
-      <Precision type="QString">maintain</Precision>
-      <Geolocateuser type="bool">false</Geolocateuser>
-      <Exportfolder type="QString">C:\Users\Olof\AppData\Local\Temp\qgis2web</Exportfolder>
-      <Usedebuglibraries type="bool">false</Usedebuglibraries>
+      <Maxzoomlevel type="QString">24</Maxzoomlevel>
       <MatchprojectCRS type="bool">false</MatchprojectCRS>
-      <mapFormat type="QString">leaflet</mapFormat>
+      <Extent type="QString">Canvas extent</Extent>
+      <Precision type="QString">maintain</Precision>
+      <Highlightonhover type="bool">true</Highlightonhover>
       <Mappinglibrarylocation type="QString">Local</Mappinglibrarylocation>
-      <Template type="QString">full-screen</Template>
+      <Layersearch type="QString">gateways: id</Layersearch>
       <MinifyGeoJSONfiles type="bool">false</MinifyGeoJSONfiles>
       <Exporter type="QString">folder</Exporter>
-      <Maxzoomlevel type="QString">24</Maxzoomlevel>
-      <Addlayerslist type="QString">None</Addlayerslist>
-      <Addaddresssearch type="bool">false</Addaddresssearch>
-      <Restricttoextent type="bool">false</Restricttoextent>
-      <Layersearch type="QString">gateways: id</Layersearch>
-      <Measuretool type="QString">Metric</Measuretool>
+      <Exportfolder type="QString">C:\Users\Olof\AppData\Local\Temp\qgis2web</Exportfolder>
+      <Addlayerslist type="QString">Collapsed</Addlayerslist>
+      <Geolocateuser type="bool">false</Geolocateuser>
       <Searchlayer type="QString">gateways_1</Searchlayer>
+      <mapFormat type="QString">leaflet</mapFormat>
+      <Template type="QString">full-screen</Template>
+      <Restricttoextent type="bool">false</Restricttoextent>
+      <Usedebuglibraries type="bool">false</Usedebuglibraries>
+      <Minzoomlevel type="QString">1</Minzoomlevel>
+      <Measuretool type="QString">None</Measuretool>
+      <Showpopupsonhover type="bool">false</Showpopupsonhover>
+      <Addaddresssearch type="bool">false</Addaddresssearch>
     </qgis2web>
-    <Measurement>
-      <AreaUnits type="QString"></AreaUnits>
-      <DistanceUnits type="QString"></DistanceUnits>
-    </Measurement>
     <SpatialRefSys>
       <ProjectionsEnabled type="int">1</ProjectionsEnabled>
     </SpatialRefSys>
     <Measure>
       <Ellipsoid type="QString">WGS84</Ellipsoid>
     </Measure>
+    <Legend>
+      <filterByMap type="bool">false</filterByMap>
+    </Legend>
+    <Paths>
+      <Absolute type="bool">false</Absolute>
+    </Paths>
     <Gui>
-      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
-      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
-      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
-      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
-      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
       <CanvasColorBluePart type="int">255</CanvasColorBluePart>
       <CanvasColorRedPart type="int">255</CanvasColorRedPart>
+      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
+      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
+      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
+      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
+      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
     </Gui>
+    <PAL>
+      <CandidatesPoint type="int">16</CandidatesPoint>
+      <DrawOutlineLabels type="bool">true</DrawOutlineLabels>
+      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
+      <ShowingCandidates type="bool">false</ShowingCandidates>
+      <ShowingAllLabels type="bool">false</ShowingAllLabels>
+      <SearchMethod type="int">0</SearchMethod>
+      <CandidatesLine type="int">50</CandidatesLine>
+      <DrawRectOnly type="bool">false</DrawRectOnly>
+      <CandidatesPolygon type="int">30</CandidatesPolygon>
+    </PAL>
+    <Measurement>
+      <AreaUnits type="QString"></AreaUnits>
+      <DistanceUnits type="QString"></DistanceUnits>
+    </Measurement>
   </properties>
   <visibility-presets/>
   <transformContext/>
