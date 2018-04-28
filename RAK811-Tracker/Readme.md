@@ -68,6 +68,23 @@ Now it starts and outputs debug information on UART,
     [Debug]: ACC X:FF00 Y:0000 Z:FF00
     GpsGetLatestGpsPositionDouble ret = 0
 
+# Free pins
+
+All these pins are brought out to the 10 pin headers on one side or the other.
+All are GPIO.
+All are 5V tolerant.
+PB12 and PA1 are also ADC inputs
+
+PB12 1 available
+PA8 4 available
+PB3 8 available
+PB5 9 available
+PB2 6 available
+PA1 7 available
+
+PA15 is used to control power to the GPS.
+
+
 ## Qemu
 I have made a simple qemu board emulation and its possible to start and run in qemu,
 Read more here [running in qemu](./QEMU.md)

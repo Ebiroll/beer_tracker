@@ -289,12 +289,14 @@ static void BoardUnusedIoInit( void )
     HAL_DBGMCU_EnableDBGSleepMode( );
     HAL_DBGMCU_EnableDBGStandbyMode( );
 #else
-    HAL_DBGMCU_DisableDBGSleepMode( );
-    HAL_DBGMCU_DisableDBGStopMode( );
-    HAL_DBGMCU_DisableDBGStandbyMode( );
+// To Bea able to use 
+    //HAL_DBGMCU_DisableDBGSleepMode( );
+    //HAL_DBGMCU_DisableDBGStopMode( );
+    //HAL_DBGMCU_DisableDBGStandbyMode( );
 
-    GpioInit( &ioPin, SWDIO, PIN_ANALOGIC, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
-    GpioInit( &ioPin, SWCLK, PIN_ANALOGIC, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
+    // Used for SWD
+    //GpioInit( &ioPin, SWDIO, PIN_ANALOGIC, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
+    //GpioInit( &ioPin, SWCLK, PIN_ANALOGIC, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
 #endif
 }
 
