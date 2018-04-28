@@ -78,6 +78,12 @@ function Decoder(bytes, port) {
     return decoded;
 }
 
+# Rak file commisioning
+
+You must change this file for the RAK811, Commisioning,h
+
+https://os.mbed.com/teams/Semtech/code/LoRaWAN-NAMote72-Application-Demo/
+
 
 # Data format
 This is how the RAK data format reply from TTN storage looks like
