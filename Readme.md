@@ -10,15 +10,17 @@ appkey to retreive the data.
 https://www.thethingsnetwork.org/docs/applications/storage/api.html
 
 
+Here the collected data will be displayed here.
+https://beer-tracker-ecaa3.firebaseapp.com/#14/59.3123/18.0678
 
-## Setting up your application in the ttn console
+# Setting up your application in the ttn console
 
-#  PayloadFormats tab.
+##  PayloadFormats tab.
 
 To get the data collected by the things network you must enter the decoder,js in the things console.
 
 
-# Integrations tab
+## Integrations tab
 
 You must also enable Data Storage in the things network console.
 When you do this you get an interface for fetching data direcly from the things network.
