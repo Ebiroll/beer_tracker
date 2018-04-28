@@ -33,8 +33,12 @@ edit mbedapp.json to configure lora.device-eui, lora.application-eui, lora.appli
 ##. compile and send to evaluation board (assumes there is only one ST-Link/Nucleo/DISCO board connected)
 mbed compile -m MTB_RAK811 -t GCC_ARM --flash
 
+## lORA WAN 1.0.2
+
+https://os.mbed.com/teams/mbed-os-examples/code/mbed-os-example-lorawan/
 
 
 ## Pin names, etc.
 
 https://github.com/ARMmbed/mbed-os/pull/6043/files
+
