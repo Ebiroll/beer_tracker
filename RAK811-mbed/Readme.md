@@ -35,3 +35,6 @@ mbed compile -m MTB_RAK811 -t GCC_ARM --flash
 
 
 
+## Pin names, etc.
+
+https://github.com/ARMmbed/mbed-os/pull/6043/files
