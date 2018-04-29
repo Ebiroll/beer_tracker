@@ -31,7 +31,19 @@ which arm-none-eabi-gcc
 edit mbedapp.json to configure lora.device-eui, lora.application-eui, lora.application-key
 
 ##. compile and send to evaluation board (assumes there is only one ST-Link/Nucleo/DISCO board connected)
+
 mbed compile -m MTB_RAK811 -t GCC_ARM --flash
+
+
+## To compile with debug info 
+mbed compile --profile mbed-os/tools/profiles/debug.json  -m MTB_RAK811 -t GCC_ARM
+However it might not fit fo flash,
+To run in qemu,try increasing this
+  FLASH (rx) : ORIGIN = 0x08000000, LENGTH = 256k
+  in 
+mbed-os/targets/TARGET_STM/TARGET_STM32L1/TARGET_MTB_RAK811/device/TOOLCHAIN_GCC_ARM/STM32L151XB-A.ld
+
+
 
 ## lORA WAN 1.0.2
 
@@ -43,4 +55,6 @@ https://github.com/ARMmbed/mbed-os-example-lorawan
 ## Pin names, etc.
 
 https://github.com/ARMmbed/mbed-os/pull/6043/files
+
+
 
