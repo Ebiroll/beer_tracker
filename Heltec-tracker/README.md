@@ -7,6 +7,10 @@ Currently data is not sent in the same format as the RAK board.
 This is the next step.
 
 
+# Another solution
+https://www.thethingsnetwork.org/labs/story/heltec-lorawan-gps-quick-start
+
+
 To build
 
 
