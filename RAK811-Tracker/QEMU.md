@@ -10,7 +10,7 @@ Instructions are available in readme.md
  -S -s  -pflash .pioenvs/rak811/firmware.bin
 
 
-# Start debubgger
+# Start debugger
 esport PATH=$PATH:~/.platformio/packages/toolchain-gccarmnoneeabi/bin/
 
 /home/olas/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gdb  .pioenvs/rak811/firmware.elf -ex ' target remote:1234'
@@ -24,7 +24,17 @@ esport PATH=$PATH:~/.platformio/packages/toolchain-gccarmnoneeabi/bin/
     (gdb) b main
     (gdb) b HAL_Init
 
+# Starting a second qemu to run in parallell.
+
+    /qemu-system-arm   -serial file:uart1.log  -d unimp  -serial tcp::23456,server,nowait -monitor stdio -machine
+    rak811 -cpu cortex-m3 -S  -gdb tcp::2345  -pflash  ./BUILD/MTB_RAK811/GCC_ARM/mbed-os-example-lorawan.bin
+
+    arm-none-eabi-gdb ./BUILD/MTB_RAK811/GCC_ARM/mbed-os-example-lorawan.elf  -ex ' target remote:2345'
+
+
+
 # Status
+
 It starts and gets giong, emulation is not ass good as for stm32f2xx
 The new files compared to the pebble emulation is called stm32l1xx
 
