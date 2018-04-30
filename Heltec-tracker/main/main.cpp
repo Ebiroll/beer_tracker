@@ -35,9 +35,25 @@
 #define BUILTIN_LED 25
 // The TinyGPS++ object
 TinyGPSPlus gps;
-typedef union {
+
+#define LORAWAN_APP_DATA_SIZE                       11
+
+static uint8_t AppDataSize = LORAWAN_APP_DATA_SIZE;
+
+
+#define LORAWAN_APP_DATA_MAX_SIZE                           242
+
+/*!
+ * User application data
+ */
+static uint8_t AppData[LORAWAN_APP_DATA_MAX_SIZE];
+
+typedef struct {
   float f[2];               // Assigning fVal.f will also populate fVal.bytes;
-  unsigned char bytes[8];   // Both fVal.f and fVal.bytes share the same 4 bytes of memory.
+  
+
+
+  //unsigned char bytes[32];   // Both fVal.f and fVal.bytes share the same 4 bytes of memory.
 } floatArr2Val;
 floatArr2Val latlong;
 float latitude;
@@ -115,17 +131,49 @@ const lmic_pinmap lmic_pins = {
 bool get_coords () {
   while (GPSSerial.available())
     gps.encode(GPSSerial.read());
+
   latitude  = gps.location.lat();
   longitude = gps.location.lng();
   // Only update if location is valid and has changed
+  
   if ((latitude && longitude) && latitude != latlong.f[0]
       && longitude != latlong.f[1]) {
     latlong.f[0] = latitude;
     latlong.f[1] = longitude;
-    for (int i = 0; i < 8; i++)
-      Serial.print(latlong.bytes[i], HEX);
+
+    //ret = GpsGetLatestGpsPositionDouble(&latitude, &longitude);
+		//altitudeGps = GpsGetLatestGpsAltitude(); // in m
+		//hdopGps = GpsGetLatestGpsHorizontalDilution();
+		//printf("[Debug]: latitude: %f, longitude: %f , altitudeGps: %d \n", latitude, longitude, altitudeGps);
+		int32_t lat = ((latitude + 90) / 180.0) * 16777215;
+		int32_t lon = ((longitude + 180) / 360.0) * 16777215;
+		int16_t alt = 30; // altitudeGps;
+		int8_t hdev = 20; // hdopGps / 10;
+		
+
+      printf("Lat: %d Lon: %d, Alt: %d\r\n", (int)lat, (int)lon, alt);
+
+			AppData[0] = lat >> 16;
+			AppData[1] = lat >> 8;
+			AppData[2] = lat;
+
+			AppData[3] = lon >> 16;
+			AppData[4] = lon >> 8;
+			AppData[5] = lon;
+
+			AppData[6] = alt >> 8;
+			AppData[7] = alt;
+
+			AppData[9] = hdev;
+
+			AppDataSize = 10;
+
+
+    //for (int i = 0; i < 8; i++)
+    //  Serial.print(latlong.bytes[i], HEX);
     Serial.println();
   }
+  
   u8x8.setCursor(0, 2);
   u8x8.print("Lat: ");
   u8x8.setCursor(5, 2);
@@ -246,7 +294,7 @@ void do_send(osjob_t* j) {
     // Prepare upstream data transmission at the next possible time.
     if (get_coords()) {
       //LMIC_setTxData2(1, (uint8_t*) coords, sizeof(coords), 0);
-      LMIC_setTxData2(1, latlong.bytes, 8, 0);
+      LMIC_setTxData2(2, AppData, AppDataSize, 0);
       Serial.println(F("Packet queued"));
       u8x8.drawString(0, 7, "PACKET QUEUED");
       digitalWrite(BUILTIN_LED, HIGH);

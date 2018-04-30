@@ -1,10 +1,14 @@
 This is a GPS enabled ESP32 Heltec board.
 GPS data for the device is received on pin 22
 
-#define GPS_RX 22
+# define GPS_RX 22
 
 Currently data is not sent in the same format as the RAK board.
 This is the next step.
+
+
+# Dont forget to set chrystal frequency to 26 MHz
+
 
 
 # Another solution
