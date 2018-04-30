@@ -1,7 +1,7 @@
 
 // program version - note: increment version after modifications to configData_t struct!!
 #define PROGVERSION                     "1.3.4"    // use max 10 chars here!
-#define PROGNAME                        "PAXCNT"
+#define PROGNAME                        "PAXTRAC"
 
 //--- Declarations ---
 

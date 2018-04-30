@@ -6,12 +6,63 @@
 #include <lmic.h>
 #include <hal/hal.h>
 
+#ifdef PIN_GPS_RX
+#include <TinyGPS++.h>
+#endif
+
 #ifdef MCP_24AA02E64_I2C_ADDRESS
     #include <Wire.h> // Needed for 24AA02E64, does not hurt anything if included and not used
 #endif
 
 // Local logging Tag
 static const char *TAG = "lorawan";
+
+#ifdef PIN_GPS_RX
+TinyGPSPlus gps;
+HardwareSerial GPSSerial(1);
+float latitude;
+float longitude;
+#endif
+
+static uint8_t AppPort = 2; // LORAWAN_APP_PORT
+
+
+static uint8_t AppDataSize = 16;
+
+
+/*!
+ * LoRaWAN compliance tests support data
+ */
+struct ComplianceTest_s {
+	bool Running;
+	uint8_t State;
+	bool IsTxConfirmed;
+	uint8_t AppPort;
+	uint8_t AppDataSize;
+	uint8_t *AppDataBuffer;
+	uint16_t DownLinkCounter;
+	bool LinkCheck;
+	uint8_t DemodMargin;
+	uint8_t NbGateways;
+} ComplianceTest;
+
+void dump_hex2str(uint8_t *buf, uint8_t len) {
+	for (uint8_t i = 0; i < len; i++) {
+		printf("%02X ", buf[i]);
+	}
+	printf("\r\n");
+}
+
+/*!
+ * User application data buffer size
+ */
+#define LORAWAN_APP_DATA_MAX_SIZE                           242
+
+/*!
+ * User application data
+ */
+static uint8_t AppData[LORAWAN_APP_DATA_MAX_SIZE];
+
 
 // functions defined in rcommand.cpp
 void rcommand(uint8_t cmd, uint8_t arg);
@@ -75,6 +126,7 @@ void get_hard_deveui(uint8_t *pdeveui) {
 #endif // MCP 24AA02E64    
 }
 
+#define VERBOSE
 #ifdef VERBOSE
 
 // Display a key
@@ -105,7 +157,147 @@ void printKeys(void) {
 	printKey("AppKey", buf, 16, false);
 }
 
+
+
 #endif // VERBOSE
+
+#ifdef PIN_GPS_RX
+bool get_coords () {
+  while (GPSSerial.available())
+    gps.encode(GPSSerial.read());
+
+  latitude  = gps.location.lat();
+  longitude = gps.location.lng();
+#if 0
+  // Only update if location is valid and has changed
+  if ((latitude && longitude) && latitude != latlong.f[0]
+      && longitude != latlong.f[1]) {
+    latlong.f[0] = latitude;
+    latlong.f[1] = longitude;
+    for (int i = 0; i < 8; i++)
+      Serial.print(latlong.bytes[i], HEX);
+    Serial.println();
+  }
+  u8x8.setCursor(0, 2);
+  u8x8.print("Lat: ");
+  u8x8.setCursor(5, 2);
+  sprintf(s, "%f", latitude);
+  u8x8.print(s);
+  u8x8.setCursor(0, 3);
+  u8x8.print("Lng: ");
+  u8x8.setCursor(5, 3);
+  sprintf(s, "%f", longitude);
+  u8x8.print(s);
+#endif
+  return(gps.location.isValid());
+}
+
+static void PrepareTxFrame(uint8_t port) {
+	double latitude, longitude, hdopGps = 0;
+	int16_t altitudeGps = 0xFFFF;
+	uint8_t ret;
+	uint16_t bat;
+
+	switch (port) {
+	//https://mydevices.com/cayenne/docs/lora/#lora-cayenne-low-power-payload
+	//cayenne LPP GPS
+	case 2: {
+		//ret = GpsGetLatestGpsPositionDouble(&latitude, &longitude);
+		altitudeGps = 30; //GpsGetLatestGpsAltitude(); // in m
+		hdopGps = 3; // GpsGetLatestGpsHorizontalDilution();
+		//printf("[Debug]: latitude: %f, longitude: %f , altitudeGps: %d \n", latitude, longitude, altitudeGps);
+		int32_t lat = ((latitude + 90) / 180.0) * 16777215;
+		int32_t lon = ((longitude + 180) / 360.0) * 16777215;
+		int16_t alt = altitudeGps;
+		int8_t hdev = hdopGps / 10;
+		
+		if (ret == 1) { // SUCCESS
+
+                        printf("Lat: %d Lon: %d, Alt: %d\r\n", (int)lat, (int)lon, alt);
+
+			AppData[0] = lat >> 16;
+			AppData[1] = lat >> 8;
+			AppData[2] = lat;
+
+			AppData[3] = lon >> 16;
+			AppData[4] = lon >> 8;
+			AppData[5] = lon;
+
+			AppData[6] = alt >> 8;
+			AppData[7] = alt;
+
+			AppData[9] = hdev;
+
+			AppDataSize = 10;
+
+		} else {
+                        printf("No GPS fix.\r\n");
+			AppDataSize = 0;
+		}
+	}
+		break;
+
+		//cayenne LPP Temp
+	case 3: {
+		//bat = BoardBatteryMeasureVolage();
+		//AppData[0] = (bat / 10) & 0xFF;
+		//AppData[1] = ((bat / 10) >> 8) & 0xFF;
+		//AppDataSize = 2;
+		//printf("[Debug]: Bat: %dmv\r\n", bat);
+	}
+		break;
+
+		//cayenne LPP Acceleration
+	case 4: {
+
+		//LIS3DH_ReadReg(LIS3DH_OUT_X_H, AppData + 0);
+		//DelayMs(2);
+		//LIS3DH_ReadReg(LIS3DH_OUT_X_L, AppData + 1);
+		//DelayMs(2);
+		//LIS3DH_ReadReg(LIS3DH_OUT_Y_H, AppData + 2);
+		//DelayMs(2);
+		//LIS3DH_ReadReg(LIS3DH_OUT_Y_L, AppData + 3);
+		//DelayMs(2);
+		//LIS3DH_ReadReg(LIS3DH_OUT_Z_H, AppData + 4);
+		//DelayMs(2);
+		//LIS3DH_ReadReg(LIS3DH_OUT_Z_L, AppData + 5);
+		//DelayMs(2);
+
+		//AppDataSize = 6;
+		//printf("[Debug]: ACC X:%04X Y:%04X Z:%04X\r\n",
+		//		AppData[0] << 8 | AppData[1], AppData[2] << 8 | AppData[3],
+		//		AppData[4] << 8 | AppData[5]);
+	}
+		break;
+
+	case 224:
+		if (ComplianceTest.LinkCheck == true) {
+			ComplianceTest.LinkCheck = false;
+			AppDataSize = 3;
+			AppData[0] = 5;
+			AppData[1] = ComplianceTest.DemodMargin;
+			AppData[2] = ComplianceTest.NbGateways;
+			ComplianceTest.State = 1;
+		} else {
+			switch (ComplianceTest.State) {
+			case 4:
+				ComplianceTest.State = 1;
+				break;
+			case 1:
+				AppDataSize = 2;
+				AppData[0] = ComplianceTest.DownLinkCounter >> 8;
+				AppData[1] = ComplianceTest.DownLinkCounter;
+				break;
+			}
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+
+#endif
 
 void do_send(osjob_t* j){
     uint8_t mydata[4];
