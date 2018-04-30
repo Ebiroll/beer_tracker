@@ -10,7 +10,7 @@ appkey to retreive the data.
 https://www.thethingsnetwork.org/docs/applications/storage/api.html
 
 
-Here the collected data will be displayed here.
+The collected data will be displayed here.
 https://beer-tracker-ecaa3.firebaseapp.com/#14/59.3123/18.0678
 
 # Setting up your application in the ttn console
