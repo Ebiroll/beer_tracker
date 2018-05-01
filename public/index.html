@@ -32,10 +32,12 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
+        <script src="js/leaflet.ajax.js"></script>
         <script src="js/leaflet-measure.js"></script>
         <script src="js/leaflet-search.js"></script>
         <script src="data/route_1.js"></script>
         <script src="data/gateway_2.js"></script>
+        <script src="js/jquery-3.3.1.min.js"></script>        
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -181,6 +183,39 @@
             initial: false,
             hideMarkerOnCollapse: true,
             propertyName: 'model'}));
+            /* curl -X GET --header 'Accept: application/json' --header 'Authorization: key ttn-account-v2.roDff_0RLN8RalPCctiau1q-gLAtb-QhzTy3lO4EtfY' 'https://esp32_heltec.data.thethingsnetwork.org/api/v2/query?last=2d' */
+            /* curl -X GET --header 'Accept: application/json' --header 'Authorization: key ttn-account-v2.roDff_0RLN8RalPCctiau1q-gLAtb-QhzTy3lO4EtfY' 'https://esp32_heltec.data.thethingsnetwork.org/api/v2/query' */
+            $(document).ready(function(){
+                $.ajax({
+                //url: 'https://esp32_heltec.data.thethingsnetwork.org/api/v2/query?last=2d',
+                url: 'data.json',
+                dataType : "jsonp",
+                local : true,
+                method: "GET",
+                beforeSend: function(request) {
+                 request.setRequestHeader(Authorization, 'key ttn-account-v2.roDff_0RLN8RalPCctiau1q-gLAtb-QhzTy3lO4EtfY');
+                 request.setRequestHeader(Accept, "application/json");
+                },
+                success: function(data){
+                    console.log("XXXXXXXXXXX",data);
+                    var out = [];
+                    for(single in data) {
+                     //console.log(data[single].lat);
+                     var tobj =  { 
+                      type: "Feature", 
+                      properties: { description: "Single channel dragino raspi", id: "olle" }, 
+                      geometry: { type: "Point", coordinates: [data[single].lon , data[single].lat , 0.0 ] } };
+                      L.geoJSON(tobj).addTo(map);
+                     }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown); 
+                }       
+                });
+
+            });
+
         </script>
     </body>
 </html>

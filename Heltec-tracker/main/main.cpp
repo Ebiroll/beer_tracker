@@ -164,7 +164,7 @@ bool get_coords () {
 			AppData[6] = alt >> 8;
 			AppData[7] = alt;
 
-			AppData[9] = hdev;
+			AppData[8] = hdev;
 
 			AppDataSize = 10;
 

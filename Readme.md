@@ -125,6 +125,9 @@ https://esp32_heltec.data.thethingsnetwork.org/api/v2/query
   }
 ]
 
+# Leaflet and ajax
+https://github.com/calvinmetcalf/leaflet-ajax/tree/ajax
+
 
 # Interesting links
 
