@@ -189,7 +189,7 @@
                 $.ajax({
                 //url: 'https://esp32_heltec.data.thethingsnetwork.org/api/v2/query?last=2d',
                 url: 'data.json',
-                dataType : "jsonp",
+                dataType : "json",
                 local : true,
                 method: "GET",
                 beforeSend: function(request) {
@@ -201,16 +201,18 @@
                     var out = [];
                     for(single in data) {
                      //console.log(data[single].lat);
-                     var tobj =  { 
-                      type: "Feature", 
-                      properties: { description: "Single channel dragino raspi", id: "olle" }, 
-                      geometry: { type: "Point", coordinates: [data[single].lon , data[single].lat , 0.0 ] } };
+                     if (data[single].lon && data[single].lat) {
+                        var tobj =  { 
+                        type: "Feature", 
+                        properties: { description: "Single channel dragino raspi", id: "olle" }, 
+                        geometry: { type: "Point", coordinates: [data[single].lon , data[single].lat , 0.0 ] } };
                       L.geoJSON(tobj).addTo(map);
+                     }
                      }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                    alert("Status: " + textStatus);
-                    alert("Error: " + errorThrown); 
+                    console.log("Status: " + textStatus);
+                    console.log("Error: " + errorThrown); 
                 }       
                 });
 
