@@ -1,1 +1,63 @@
+[
+  {
+    "acceleration": null,
+    "alt": 30,
+    "device_id": "0x00012345",
+    "hdop": 2,
+    "lat": 59.42245062723461,
+    "lon": 17.829599251127206,
+    "raw": "1IMNjK3HAB4UAA==",
+    "time": "2018-05-01T19:24:46.636040085Z"
+  },
+  {
+    "acceleration": null,
+    "alt": 30,
+    "device_id": "0x00012345",
+    "hdop": 2,
+    "lat": 59.422096575623556,
+    "lon": 17.82944904741342,
+    "raw": "1ILsjK3AAB4UAA==",
+    "time": "2018-05-01T19:25:53.13286467Z"
+  },
+  {
+    "acceleration": null,
+    "alt": 30,
+    "device_id": "0x00012345",
+    "hdop": 2,
+    "lat": 59.42205366027676,
+    "lon": 17.829019893945457,
+    "raw": "1ILojK2sAB4UAA==",
+    "time": "2018-05-01T19:26:26.887036983Z"
+  },
+  {
+    "acceleration": null,
+    "alt": 30,
+    "device_id": "0x00012345",
+    "hdop": 2,
+    "lat": 59.42110952264724,
+    "lon": 17.828848232558272,
+    "raw": "1IKQjK2kAB4UAA==",
+    "time": "2018-05-01T19:28:43.387448003Z"
+  },
+  {
+    "acceleration": null,
+    "alt": 30,
+    "device_id": "0x00012345",
+    "hdop": 2,
+    "lat": 59.421270455197714,
+    "lon": 17.828934063251864,
+    "raw": "1IKfjK2oAB4UAA==",
+    "time": "2018-05-01T19:30:10.84382922Z"
+  },
+  {
+    "acceleration": null,
+    "alt": 30,
+    "device_id": "0x00012345",
+    "hdop": 2,
+    "lat": 59.42180689703267,
+    "lon": 17.82942758974002,
+    "raw": "1ILRjK2/AB4UAA==",
+    "time": "2018-05-01T19:32:13.978678228Z"
+  }
+]
 [{"alt":null,"device_id":"0x00012345","hdop":null,"lat":null,"lon":null,"raw":"fLFtQkmjjkE=","time":"2018-04-30T16:05:18.049686631Z"},{"alt":null,"device_id":"0x00012345","hdop":null,"lat":null,"lon":null,"raw":"f7FtQjCjjkE=","time":"2018-04-30T16:20:07.751144173Z"},{"alt":30,"device_id":"0x00012345","hdop":0,"lat":59.423362578354045,"lon":17.8296636241474,"raw":"1INijK3KAB4AAg==","time":"2018-04-30T16:39:58.998294987Z"},{"alt":30,"device_id":"0x00012345","hdop":0,"lat":59.42333039184393,"lon":17.829706539494197,"raw":"1INfjK3MAB4AFA==","time":"2018-04-30T16:44:23.007534064Z"}]
