@@ -11,7 +11,33 @@ https://www.thethingsnetwork.org/docs/applications/storage/api.html
 
 
 The collected data will be displayed here.
+
 https://beer-tracker-ecaa3.firebaseapp.com/#14/59.3123/18.0678
+
+# Pitfalls during development
+
+When I first saw that the things network had a Data storage Integrations possibility I thought that the
+webpage displaying the map could pull the data directly from the things network a similar way that map tiles are
+pulled from google.
+
+## Pitfall #1 CORS
+Unfortunately I didnt know enough about CORS, Cross-Origin Resource Sharing (CORS) Cross-Origin Resource Sharing (CORS)
+This prevented me with my poor javascript skills to pull the data from ttn.
+
+So I thought a simple proxy in firebase would do the job. 
+
+## Pitfal #2 Firebase functions
+This would have solved my problem.
+https://firebase.google.com/docs/functions/
+I implemented an untested solution in the functions folder. Unfortunately, as it turned out, It would only work with google infrastructure unless I upgrade my account.
+
+## Pitfal #3 resin.io node.js
+This is where I am currently at. I will try to implement a node.js script running in resin.io that pulls the data from  ttn Data Store and puts it into the firebase database that I can use.
+The reason for this solution is because I already have 2 resin.io devices that are constantly running.
+
+## Pitfal #4
+Probably there is not enough time to implement this but it would be nice to have a process running that gathers 
+data about the gateways that intercepted a message and move that to firebase.
 
 # Setting up your application in the ttn console
 
