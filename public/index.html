@@ -186,39 +186,22 @@
             /* curl -X GET --header 'Accept: application/json' --header 'Authorization: key ttn-account-v2.roDff_0RLN8RalPCctiau1q-gLAtb-QhzTy3lO4EtfY' 'https://esp32_heltec.data.thethingsnetwork.org/api/v2/query?last=2d' */
             /* curl -X GET --header 'Accept: application/json' --header 'Authorization: key ttn-account-v2.roDff_0RLN8RalPCctiau1q-gLAtb-QhzTy3lO4EtfY' 'https://esp32_heltec.data.thethingsnetwork.org/api/v2/query' */
             $(document).ready(function(){
-                $.ajax({
-                // https://github.com/mapshakers/leaflet-icon-pulse
-                //url: 'https://esp32_heltec.data.thethingsnetwork.org/api/v2/query?last=2d',
-                //url: 'beer-tracker-ecaa3/us-central1/helloWorld',
-                url: 'https://us-central1-beer-tracker-ecaa3.cloudfunctions.net/helloWorld',
-                dataType : "json",
-                local : true,
-                method: "GET",
-                headers: {
-                    'Authorization':'key ttn-account-v2.roDff_0RLN8RalPCctiau1q-gLAtb-QhzTy3lO4EtfY',
-                    'Content-Type':'application/json'
-                },
-                success: function(data){
-                    console.log("XXXXXXXXXXX",data);
-                    var out = [];
-                    for(single in data) {
-                     //console.log(data[single].lat);
-                     if (data[single].lon && data[single].lat) {
-                        var tobj =  { 
-                        type: "Feature", 
-                        properties: { description: "Single channel dragino raspi", id: "olle" }, 
-                        geometry: { type: "Point", coordinates: [data[single].lon , data[single].lat , 0.0 ] } };
-                      L.geoJSON(tobj).addTo(map);
-                     }
-                     }
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                    console.log("Status: " + textStatus);
-                    console.log("Error: " + errorThrown); 
-                }       
-                });
 
             });
+            function reqListener () {
+                console.log(this.response);
+               //L.geoJson(JSON.parse(this.response)).addTo(map);
+             }
+
+            var oReq = new XMLHttpRequest();
+            oReq.addEventListener("load", reqListener);
+            //window.onload = function(e){ 
+                console.log("window.onload" );
+                oReq.open("GET", "https://esp32_heltec.data.thethingsnetwork.org/api/v2/query?last=2d");
+                //oReq.open("GET", "data.json");
+                oReq.setRequestHeader('Authorization', 'key ttn-account-v2.roDff_0RLN8RalPCctiau1q-gLAtb-QhzTy3lO4EtfY');
+                oReq.send();
+            //}
 
         </script>
     </body>
