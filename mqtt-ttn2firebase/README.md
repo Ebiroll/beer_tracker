@@ -1,7 +1,11 @@
-mqtt-mongo-recorder
+mqtt-ttn2firebase
 ===========
 
-This NodeJS application listens to MQTT messages and records them to MongoDB
+This NodeJS application listens to MQTT messages and records them to a firebase firestore database
+
+
+
+
 
 Check this link
 https://www.thethingsnetwork.org/labs/story/save-your-data-using-nodejs-mqtt-mongodb
@@ -13,8 +17,8 @@ Example
 
 Clone the repository
 ```bash
-$ git clone https://github.com/dennisdegreef/mqtt-mongo-recorder.git
-$ cd mqtt-mongo-recorder
+$ git clone https://github.com/Ebiroll/beer_tracker
+$ cd beer_tracker/mqtt-ttn2firebase
 $ npm install
 ```
 
@@ -34,11 +38,5 @@ Publish some MQTT messages to try it out (I use mosquitto server for this, but w
 $ mosquitto_pub -m "bar" -t "foo"
 ```
 
-Let's see what's in here
-```bash
-$ mongo
-> use mqtt
-> db.message.find();
-```
 
 

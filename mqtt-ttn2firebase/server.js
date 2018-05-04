@@ -6,36 +6,46 @@
  * @license MIT
  *
  */
-var mongodb  = require('mongodb');
 var mqtt     = require('mqtt');
 var config   = require('./config');
 
-var mqttUri  = 'mqtt://' + config.mqtt.hostname + ':' + config.mqtt.port;
+const admin = require('firebase-admin');
+const serviceAccount = require("./service-key.json");
+
+
+//admin.initializeApp({
+//    credential: admin.credential.cert(serviceAccount),
+//    databaseURL: "https://beer-tracker-ecaa3.firebaseio.com"
+//});
+
+
+//var mqttUri  = 'mqtt://' + config.mqtt.hostname + ':' + config.mqtt.port;
+var mqttUri  = 'mqtt://' + config.mqtt.user + ':' + config.mqtt.password + '@' + config.mqtt.hostname + ':' + config.mqtt.port;
+
 var client   = mqtt.connect(mqttUri);
 
 client.on('connect', function () {
     client.subscribe(config.mqtt.namespace);
 });
 
-var mongoUri = 'mongodb://' + config.mongodb.hostname + ':' + config.mongodb.port + '/' + config.mongodb.database;
-mongodb.MongoClient.connect(mongoUri, function(error, database) {
-    if(error != null) {
-        throw error;
-    }
 
-    var collection = database.collection(config.mongodb.collection);
-    collection.createIndex( { "topic" : 1 } );
+client.on('message', function (topic, message) {
+    var messageObject = {
+        topic: topic,
+        message: message.toString()
+     };
 
-    client.on('message', function (topic, message) {
-        var messageObject = {
-            topic: topic,
-            message: message.toString()
-        };
+     //admin.firestore()
+     //.collection("positions")
+     //.doc(docTitle)
+     //.set(messageObject)
+     //.then((res) => {
+     //    console.log("Document successfully written!");
+     //})
+     //.catch((error) => {
+     //    console.error("Error writing document: ", error);
+     //});
 
-        collection.insert(messageObject, function(error, result) {
-            if(error != null) {
-                console.log("ERROR: " + error);
-            }
-        });
-    });
+     console.log("MQTT MESSAGE",messageObject);
+
 });

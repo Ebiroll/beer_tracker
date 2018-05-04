@@ -3,14 +3,11 @@ var config = {};
 config.debug = process.env.DEBUG || false;
 
 config.mqtt  = {};
-config.mqtt.namespace = process.env.MQTT_NAMESPACE || '#';
-config.mqtt.hostname  = process.env.MQTT_HOSTNAME  || 'localhost';
-config.mqtt.port      = process.env.MQTT_PORT      || 1883;
 
-config.mongodb = {};
-config.mongodb.hostname   = process.env.MONGODB_HOSTNAME   || 'localhost';
-config.mongodb.port       = process.env.MONGODB_PORT       || 27017;
-config.mongodb.database   = process.env.MONGODB_DATABASE   || 'mqtt';
-config.mongodb.collection = process.env.MONGODB_COLLECTION || 'message';
+config.mqtt.namespace = process.env.MQTT_NAMESPACE || '+/devices/+/up';
+config.mqtt.hostname  = process.env.MQTT_HOSTNAME  || 'eu.thethings.network';
+config.mqtt.port      = process.env.MQTT_PORT      || 1883;
+config.mqtt.user      = process.env.MQTT_USER      || '<appid>';
+config.mqtt.password  = process.env.MQTT_PASSWORD  || '<accesskey>';
 
 module.exports = config;

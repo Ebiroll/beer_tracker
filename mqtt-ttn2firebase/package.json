@@ -1,15 +1,15 @@
 {
-    "name": "mqtt-mongo-recorder",
-    "description": "This NodeJS application listens to MQTT messages and records them to MongoDB",
-    "author": "Dennis de Greef <github@link0.net>",
+    "name": "mqtt-ttn2firebase",
+    "description": "This NodeJS application listens to MQTT messages and records them to Firebase",
+    "author": "Olof Åstrand <olof.astrand@gmail.com>", 
     "license": "MIT",
     "version": "1.0.0",
     "dependencies": {
-        "mqtt": "1.1.3",
-        "mongodb": "2.0.28"
+        "mqtt": "*",
+        "firebase-admin":"*"
     },
     "repository" : {
         "type" : "git",
-        "url" : "https://github.com/dennisdegreef/mqtt-mongo-recorder.git"
+        "url" : "https://github.com/Ebiroll/beer_tracker"
     }
 }
