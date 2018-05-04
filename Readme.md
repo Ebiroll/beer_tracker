@@ -34,8 +34,16 @@ I implemented an untested solution in the functions folder. Unfortunately, as it
 ## Pitfal #3 resin.io node.js
 This is where I am currently at. I will try to implement a node.js script running in resin.io that pulls the data from  ttn Data Store and puts it into the firebase database that I can use.
 The reason for this solution is because I already have 2 resin.io devices that are constantly running.
+https://hackernoon.com/filling-cloud-firestore-with-data-3f67d26bd66e
+
 
 ## Pitfal #4
+uncaught exception: [DEFAULT]: Firebase: No Firebase App '[DEFAULT]' has been created - call Firebase App.initializeApp() (app/no-app)
+Bah!
+I changed var firebase=require("firebase"); to  require("firebase");
+Now it worked better...
+
+## Pitfal #5
 Probably there is not enough time to implement this but it would be nice to have a process running that gathers 
 data about the gateways that intercepted a message and move that to firebase.
 
@@ -177,6 +185,8 @@ https://www.cbsnews.com/news/uk-bars-trash-cans-from-tracking-people-with-wi-fi/
 To develop,
  ```
 All files to deploy should be placed in public
+browserify js/init-db.js -o js/personal.js 
+firebase serve
  ```
 
 To deploy
@@ -185,4 +195,5 @@ npm -g install firebase-tools
 
 firebase login
 firebase deploy
+firebase deploy --except functions
  ```

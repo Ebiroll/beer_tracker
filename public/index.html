@@ -37,8 +37,13 @@
         <script src="js/leaflet-search.js"></script>
         <script src="data/route_1.js"></script>
         <script src="data/gateway_2.js"></script>
-        <script src="js/jquery-3.3.1.min.js"></script>        
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>  
+        <script src="js/personal.js"></script>
         <script>
+
+
         var highlightLayer;
         function highlightFeature(e) {
             highlightLayer = e.target;
@@ -185,24 +190,37 @@
             propertyName: 'model'}));
             /* curl -X GET --header 'Accept: application/json' --header 'Authorization: key ttn-account-v2.roDff_0RLN8RalPCctiau1q-gLAtb-QhzTy3lO4EtfY' 'https://esp32_heltec.data.thethingsnetwork.org/api/v2/query?last=2d' */
             /* curl -X GET --header 'Accept: application/json' --header 'Authorization: key ttn-account-v2.roDff_0RLN8RalPCctiau1q-gLAtb-QhzTy3lO4EtfY' 'https://esp32_heltec.data.thethingsnetwork.org/api/v2/query' */
-            $(document).ready(function(){
 
+             $(document).ready(function(){
+                let firebaseAppDefined = false
+
+
+                setInterval(() => {
+                if (!firebaseAppDefined) {
+                    if (firebase.app()) {
+                        var db = firebase.firestore();
+                        db.collection("positions").get().then(function(querySnapshot) {
+                        querySnapshot.forEach(function(doc) {
+                        // doc.data() is never undefined for query doc snapshots
+                        console.log(doc.id, " => ", doc.data());
+                         //console.log(data[single].lat);
+                         var my_data=doc.data();
+                         if (my_data.lon && my_data.lat) {
+                            var tobj =  { 
+                            type: "Feature", 
+                            properties: { description: "Single channel dragino raspi", id: "olle" }, 
+                            geometry: { type: "Point", coordinates: [my_data.lon , my_data.lat , 0.0 ] } };
+                          L.geoJSON(tobj).addTo(map);
+                         }
+
+                       });
+                    });
+
+                    firebaseAppDefined = true
+                    }
+                }
+                }, 100)
             });
-            function reqListener () {
-                console.log(this.response);
-               //L.geoJson(JSON.parse(this.response)).addTo(map);
-             }
-
-            var oReq = new XMLHttpRequest();
-            oReq.addEventListener("load", reqListener);
-            //window.onload = function(e){ 
-                console.log("window.onload" );
-                oReq.open("GET", "https://esp32_heltec.data.thethingsnetwork.org/api/v2/query?last=2d");
-                //oReq.open("GET", "data.json");
-                oReq.setRequestHeader('Authorization', 'key ttn-account-v2.roDff_0RLN8RalPCctiau1q-gLAtb-QhzTy3lO4EtfY');
-                oReq.send();
-            //}
-
         </script>
     </body>
 </html>
