@@ -3,8 +3,9 @@ mqtt-ttn2firebase
 
 This NodeJS application listens to MQTT messages and records them to a firebase firestore database
 
-
-
+Use the ttn package instead.
+node ttn2fb.js
+https://www.npmjs.com/package/ttn
 
 
 Check this link
