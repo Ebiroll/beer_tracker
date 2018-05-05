@@ -1,7 +1,12 @@
 var ttn = require("ttn")
 
+const admin = require('firebase-admin');
+const serviceAccount = require("./service-key.json");
+
 var appID = "foo";
-var accessKey = "ttn-account-v2.eiPq8mEeYRL_PNBZsOpPy-O3ABJXYWulODmQGR5PZzg";
+
+var accessKey = require("./ttn-accsess-key.json");
+
 
 ttn.data(appID, accessKey)
   .then(function (client) {
