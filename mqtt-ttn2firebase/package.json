@@ -1,16 +1,16 @@
 {
     "name": "mqtt-ttn2firebase",
     "description": "This NodeJS application listens to MQTT messages and records them to Firebase",
-    "author": "Olof Åstrand <olof.astrand@gmail.com>", 
+    "author": "Olof Åstrand <olof.astrand@gmail.com>",
     "license": "MIT",
     "version": "1.0.0",
     "dependencies": {
         "mqtt": "*",
-	"ttn": "*",
-        "firebase-admin":"*"
+        "ttn": "*",
+        "firebase-admin": "*"
     },
-    "repository" : {
-        "type" : "git",
-        "url" : "https://github.com/Ebiroll/beer_tracker"
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Ebiroll/beer_tracker"
     }
 }
