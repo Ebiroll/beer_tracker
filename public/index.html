@@ -202,7 +202,7 @@
                         db.collection("positions").get().then(function(querySnapshot) {
                         querySnapshot.forEach(function(doc) {
                         // doc.data() is never undefined for query doc snapshots
-                        console.log(doc.id, " => ", doc.data());
+                         //console.log(doc.id, " => ", doc.data());
                          //console.log(data[single].lat);
                          var my_data=doc.data();
                          if (my_data.lon && my_data.lat) {
@@ -220,6 +220,18 @@
                     }
                 }
                 }, 100)
+
+                setInterval(() => {
+                    if (firebaseAppDefined) {
+                        var db = firebase.firestore();
+                        db.collection("latest_pos").get().then(function(querySnapshot) {
+                        querySnapshot.forEach(function(doc) {
+                            console.log(doc.id, " => ", doc.data());
+                        });
+                        });
+                    }
+                }, 30000)
+
             });
         </script>
     </body>

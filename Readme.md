@@ -4,15 +4,21 @@ The purpose of this project is to track location of lora equiped beer drinkers
 
 You must set up a GPS enabled Lora-wan device that sends data to the things network.
 
-Data is collected and stored on the things network, then the webpage on firebase will use the
-appkey to retreive the data.
-
-https://www.thethingsnetwork.org/docs/applications/storage/api.html
-
+Data is collected and stored on the things network,
 
 The collected data will be displayed here.
 
 https://beer-tracker-ecaa3.firebaseapp.com/#14/59.3123/18.0678
+
+
+The data from ttn is moved from ttn to firebase here,
+cd mqtt-ttn2firebase
+npm install
+You have to use your accounts on ttn & firebase to get,
+    ttn-accsess-key.json
+    service-key.json
+
+    node ttn2fb.js
 
 # Pitfalls during development
 
@@ -44,8 +50,45 @@ I changed var firebase=require("firebase"); to  require("firebase");
 Now it worked better...
 
 ## Pitfal #5
+I used arch arm for raspberry and it turns out 
+Node js 10 does not like Buffer objects.. :-
+    at isInsideNodeModules (internal/util.js:360:28)
+    at showFlaggedDeprecation (buffer.js:149:8)
+    at new Buffer (buffer.js:174:3)
+    at Array.<anonymous> (/home/olof/work/beer_tracker/mqtt-ttn2firebase/node_modules/source-map-support/source-map-support.js:149:21)
+    at /home/olof/work/beer_tracker/mqtt-ttn2firebase/node_modules/source-map-support/source-map-support.js:53:24
+    at mapSourcePosition (/home/olof/work/beer_tracker/mqtt-ttn2firebase/node_modules/source-map-support/source-map-support.js:171:21)
+    at wrapCallSite (/home/olof/work/beer_tracker/mqtt-ttn2firebase/node_modules/source-map-support/source-map-support.js:343:20)
+    at /home/olof/work/beer_tracker/mqtt-ttn2firebase/node_modules/source-map-support/source-map-support.js:378:26
+    at Array.map (<anonymous>)
+    at Function.prepareStackTrace (/home/olof/work/beer_tracker/mqtt-ttn2firebase/node_modules/source-map-support/source-map-support.js:377:24)
+
+
+https://github.com/nodejs/node/issues/20258
 Probably there is not enough time to implement this but it would be nice to have a process running that gathers 
 data about the gateways that intercepted a message and move that to firebase.
+
+## Pitfal #6
+I used nodejs that came with raspbian. Should have done this.
+    https://deb.nodesource.com/setup_8.x | sudo -E bash - sudo 
+    apt-get install -y nodejs.
+
+
+## Pitfal #7
+If you make a misstake in your code and read data to quickly,
+i.e. like this.
+    setInterval(() => {
+        if (firebaseAppDefined) {
+            var db = firebase.firestore();
+            db.collection("latest_pos").get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                console.log(doc.id, " => ", doc.data());
+            });
+            });
+        }
+    }, 100)
+Dont read data every 100 ms
+Then your quota will exhausted at once.
 
 # Setting up your application in the ttn console
 
@@ -62,7 +105,12 @@ When you do this you get an interface for fetching data direcly from the things 
 https://esp32_heltec.data.thethingsnetwork.org/
 
 
-The application on firebase uses these url to fetch the data.
+The first idea was that the web-application on firebase uses these url to fetch the data.
+However this did not work out because of Cross-Origin Resource Sharing problems.
+
+Here is the api info.
+https://www.thethingsnetwork.org/docs/applications/storage/api.html
+
 
 # Decoder
 
@@ -186,7 +234,7 @@ To develop,
  ```
 All files to deploy should be placed in public
 browserify js/init-db.js -o js/personal.js 
-firebase serve
+firebase serve --except functions
  ```
 
 To deploy
