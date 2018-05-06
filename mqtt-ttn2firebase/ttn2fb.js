@@ -82,7 +82,7 @@ ttn.data(appID, accessKey)
       var obj = {
 	    data : payload.payload_fields,
 	    meta : payload.metadata
-      }
+      };
 
 	
       // The things network already decoded our message
@@ -94,36 +94,37 @@ ttn.data(appID, accessKey)
       var docTitle= "d" + i;
       i++;
 
-      admin.firestore()
-      .collection("ttn")
-      .doc(docTitle)
-      .set(obj)
-      .then((res) => {
-          console.log("Document successfully written!");
-      })
-      .catch((error) => {
-          console.error("Error writing document: ", error);
-      });
-
+      if (obj) {
+        admin.firestore()
+        .collection("ttn")
+        .doc(docTitle)
+        .set(obj)
+        .then((res) => {
+            console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+      }
 
       
       var latest_dev = payload.dev_id;
       if (!latest_dev) {
-	  latest_dev="NONE";
+	    latest_dev="NONE";
       }
       
-      
-      admin.firestore()
-      .collection("latest_pos")
-      .doc(latest_dev)
-      .set(obj)
-      .then((res) => {
-          console.log("Latest pos ",latest_dev);
-      })
-      .catch((error) => {
-          console.error("Error writing pos document: ", error);
-      });
-
+      if (obj) {
+        admin.firestore()
+        .collection("latest_pos")
+        .doc(latest_dev)
+        .set(obj)
+        .then((res) => {
+            console.log("Latest pos ",latest_dev);
+        })
+        .catch((error) => {
+            console.error("Error writing pos document: ", error);
+        });
+      }
   })
   .catch(function (error) {
     console.error("Error", error)
