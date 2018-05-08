@@ -216,10 +216,26 @@
                        });
                     });
 
+                    var db = firebase.firestore();
+                    db.collection("latest_pos").get().then(function(querySnapshot) {
+                    querySnapshot.forEach(function(doc) {
+                        console.log(doc.id, " => ", doc.data());
+
+                        var my_data=doc.data();
+                        if (my_data.data.lon && my_data.data.lat) {
+                        var tobj =  { 
+                        type: "Feature", 
+                        properties: { description: doc.meta, id: doc.id }, 
+                        geometry: { type: "Point", coordinates: [my_data.data.lon , my_data.data.lat , 0.0 ] } };
+                        L.geoJSON(tobj).addTo(map);
+                        }
+                    });
+                    });
                     firebaseAppDefined = true
                     }
                 }
                 }, 100)
+
 
                 setInterval(() => {
                     if (firebaseAppDefined) {
@@ -227,10 +243,22 @@
                         db.collection("latest_pos").get().then(function(querySnapshot) {
                         querySnapshot.forEach(function(doc) {
                             console.log(doc.id, " => ", doc.data());
+
+                         var my_data=doc.data();
+                         if (my_data.data.lon && my_data.data.lat) {
+                            var tobj =  { 
+                            type: "Feature", 
+                            properties: { description: doc.meta, id: doc.id }, 
+                            geometry: { type: "Point", coordinates: [my_data.data.lon , my_data.data.lat , 0.0 ] } };
+                          L.geoJSON(tobj).addTo(map);
+                         }
+
+
+
                         });
                         });
                     }
-                }, 30000)
+                }, 120000)
 
             });
         </script>
