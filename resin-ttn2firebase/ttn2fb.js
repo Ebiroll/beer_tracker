@@ -33,16 +33,18 @@ global.XMLHttpRequest = require("xhr2");
         var arrayLength = data.length;
         for (var i = 0; i < arrayLength; i++) {
             var docTitle= "data" + i;
-            admin.firestore()
-                .collection("positions")
-                .doc(docTitle)
-                .set(data[i])
-                .then((res) => {
-                    console.log("Document successfully written!");
-                })
-                .catch((error) => {
-                    console.error("Error writing document: ", error);
-                });
+            if (data[i].lon && data[i].lat) {
+                admin.firestore()
+                    .collection("positions")
+                    .doc(docTitle)
+                    .set(data[i])
+                    .then((res) => {
+                        console.log("Document successfully written!");
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+            }
         }
     }
 
