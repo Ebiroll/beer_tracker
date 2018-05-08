@@ -1,4 +1,4 @@
-const admin = require('/home/olof/work/node_modules/firebase-admin');
+const admin = require('firebase-admin');
 const serviceAccount = require("./service-key.json");
 
 const data = require("./data.json");
@@ -7,6 +7,8 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://beer-tracker-ecaa3.firebaseio.com"
 });
+
+var accessKey = require("./ttn-accsess-key.json");
 
 // Lazy hack, 
 global.XMLHttpRequest = require("xhr2");
@@ -52,7 +54,7 @@ global.XMLHttpRequest = require("xhr2");
     oReq.addEventListener("load", reqListener);
     oReq.open("GET", "https://esp32_heltec.data.thethingsnetwork.org/api/v2/query?last=5d");
     //oReq.open("GET", "data.json");
-    oReq.setRequestHeader('Authorization', 'key ttn-account-v2.roDff_0RLN8RalPCctiau1q-gLAtb-QhzTy3lO4EtfY');
+    oReq.setRequestHeader('Authorization', accessKey);
     oReq.send();
 
 
