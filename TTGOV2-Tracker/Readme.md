@@ -1,6 +1,10 @@
 
-# PAX-counter
+# Not sure what do do with this yet.
 ===========
+
+Double check pinouts with this.
+https://github.com/LilyGO/TTGO-LORA32-V2.0/blob/master/images/image1.jpg
+
 
 This code is base on the PAX counter and reports number of persons in the area.
 
