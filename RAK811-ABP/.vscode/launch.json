@@ -1,0 +1,23 @@
+// AUTOMATICALLY GENERATED FILE. PLEASE DO NOT MODIFY IT MANUALLY
+
+// PIO Unified Debugger
+//
+// Documentation: http://docs.platformio.org/page/plus/debugging.html
+// Configuration: http://docs.platformio.org/page/projectconf/section_env_debug.html
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "gdbpath": "C:/Users/Olof/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gdb.exe",
+            "type": "gdb",
+            "request": "attach",
+            "executable" : "d:/work/beer_tracker/RAK811-ABP/.pioenvs/rak811/firmware.elf",
+            "target": ":1234",
+            "remote": true,
+            "internalConsoleOptions": "openOnSessionStart",
+            "cwd": "${workspaceRoot}"
+        }
+    ]
+}
