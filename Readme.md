@@ -211,6 +211,10 @@ https://esp32_heltec.data.thethingsnetwork.org/api/v2/query
 https://github.com/calvinmetcalf/leaflet-ajax/tree/ajax
 
 
+# Beer icon
+https://www.freevector.com/sketch-octoberfest-element-vector-24700 from FreeVector.com
+
+
 # Interesting links
 
 

@@ -304,7 +304,6 @@
                             }
 
                             //"airtime":1482752000,"coding_rate":"4/5","data_rate":"SF12BW125","frequency":868.3,"gateways":[{"channel":1,"gtw_id":"olofs_rak831","gtw_trusted":true,"latitude":59.42305,"longitude":17.829903,"rf_chain":1,"rssi":-93,"snr":1,"time":"2018-05-10T12:43:03Z","timestamp":3551411564}],"modulation":"LORA","time":"2018-05-10T12:43:03.578587988Z"}
-                            myMarker.bindPopup(JSON.stringify(popup,null, 2));
                             if (index<markers.size) {
                                 var newLatLng = new L.LatLng(my_data.data.lon , my_data.data.lat);
                                 markers[index].setLatLng(newLatLng); 
