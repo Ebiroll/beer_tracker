@@ -5,9 +5,7 @@ It provides a wifi based, debug probe for i.e. ST32L1 cortex processors
 
 https://github.com/markrages/blackmagic/tree/a1d5386ce43189f0ac23300bea9b4d9f26869ffb/src/platforms/esp8266
 
-Now it seems to work, I use the RAK811 target.
-The pins are defined here,
-http://docs.rakwireless.com/en/RAK811%20TrackerBoard/Software%20Development/RAK811%20TrackerBoard%20User%20manual%20V1.1.pdf
+Now it seems to work, I use the RAK Wisnode
 
 This is the debug compiled source code I use,
 https://github.com/Ebiroll/RAK811_BreakBoard
@@ -15,8 +13,8 @@ https://github.com/Ebiroll/RAK811_BreakBoard
 So
 ```
 GND on ESP32 connects to GND on the RAK board, opposite to the boot pins
-PIN 22 on ESP32 connects to SWD_CLK
-PIN 17 on ESP32 connects to SWD_TMS
+PIN 19 on ESP32 connects to SWD_CLK
+PIN 18 on ESP32 connects to SWD_TMS
 ```
 
 
@@ -24,7 +22,7 @@ PIN 17 on ESP32 connects to SWD_TMS
 ```
 arm-none-eabi-gdb .pioenvs/rak811/firmware.elf
 
-target  extended-remote 192.168.1.136:2345
+target  extended-remote 192.168.1.122:2345
 
 (gdb) monitor help
 
