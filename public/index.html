@@ -43,7 +43,7 @@
         <script src="js/personal.js"></script>
         <script>
 
-
+        var markers=[];
         var highlightLayer;
         function highlightFeature(e) {
             highlightLayer = e.target;
@@ -193,28 +193,45 @@
 
              $(document).ready(function(){
                 let firebaseAppDefined = false
-
-
+               
                 setInterval(() => {
                 if (!firebaseAppDefined) {
                     if (firebase.app()) {
                         var db = firebase.firestore();
-                        db.collection("positions").get().then(function(querySnapshot) {
+                        db.collection("ttn").get().then(function(querySnapshot) {
                         querySnapshot.forEach(function(doc) {
                         // doc.data() is never undefined for query doc snapshots
                          //console.log(doc.id, " => ", doc.data());
                          //console.log(data[single].lat);
                          var my_data=doc.data();
-                         if (my_data.lon && my_data.lat) {
+                         if (my_data.data.lon && my_data.data.lat) {
                             var tobj =  { 
                             type: "Feature", 
                             properties: { description: "Single channel dragino raspi", id: "olle" }, 
-                            geometry: { type: "Point", coordinates: [my_data.lon , my_data.lat , 0.0 ] } };
-                          L.geoJSON(tobj).addTo(map);
+                            geometry: { type: "Point", coordinates: [my_data.data.lon , my_data.data.lat , 0.0 ] } };
+                            var marker=L.geoJSON(tobj).addTo(map);
+
+                            var popup= { id : doc.id,
+                                      rate : my_data.meta.data_rate,
+                                      freq : my_data.meta.frequency,
+                                      gateways : []
+                                    }  
+                            if ("meta" in my_data ) {
+                                        for (var i in my_data.meta.gateways) {
+                                            console.log(my_data.meta.gateways[i].gtw_id);
+                                            popup.gateways.push(my_data.meta.gateways[i].gtw_id);
+                                        }
+                            }
+
+                            //"airtime":1482752000,"coding_rate":"4/5","data_rate":"SF12BW125","frequency":868.3,"gateways":[{"channel":1,"gtw_id":"olofs_rak831","gtw_trusted":true,"latitude":59.42305,"longitude":17.829903,"rf_chain":1,"rssi":-93,"snr":1,"time":"2018-05-10T12:43:03Z","timestamp":3551411564}],"modulation":"LORA","time":"2018-05-10T12:43:03.578587988Z"}
+                            marker.bindPopup(JSON.stringify(popup,null, 2));
+
+
                          }
 
                        });
                     });
+                    // <a href="https://www.freevector.com/sketch-octoberfest-element-vector-24700">FreeVector.com</a>
 
                     var db = firebase.firestore();
                     db.collection("latest_pos").get().then(function(querySnapshot) {
@@ -224,11 +241,40 @@
                         var my_data=doc.data();
                         if (my_data.data.lon && my_data.data.lat) {
                         var tobj =  { 
-                        type: "Feature", 
-                        properties: { description: doc.meta, id: doc.id }, 
-                        geometry: { type: "Point", coordinates: [my_data.data.lon , my_data.data.lat , 0.0 ] } };
-                        L.geoJSON(tobj).addTo(map);
+                          type: "Feature", 
+                           properties: { description: doc.meta, id: doc.id }, 
+                           geometry: { type: "Point", coordinates: [my_data.data.lon , my_data.data.lat , 0.0 ] } 
+                        };
+                        //L.geoJSON(tobj).addTo(map);
+                        var beerIcon = L.icon({
+                            iconUrl: 'images/beer.png',
+                            shadowUrl: 'images/beer_shadow.png',
+
+                        iconSize:     [64, 70], // size of the icon
+                        shadowSize:   [64, 70], // size of the shadow
+                        iconAnchor:   [22, 35], // point of the icon which will correspond to marker's location
+                        shadowAnchor: [22, 35],  // the same for the shadow
+                        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                    });
+
+                            var myMarker=L.marker([ my_data.data.lat,my_data.data.lon], {icon: beerIcon}).addTo(map);
+                            var popup= { id : doc.id,
+                                      rate : my_data.meta.data_rate,
+                                      freq : my_data.meta.frequency,
+                                      gateways : []
+                                    }  
+                            if ("meta" in my_data ) {
+                                        for (var i in my_data.meta.gateways) {
+                                            console.log(my_data.meta.gateways[i].gtw_id);
+                                            popup.gateways.push(my_data.meta.gateways[i].gtw_id);
+                                        }
+                            }
+
+                            //"airtime":1482752000,"coding_rate":"4/5","data_rate":"SF12BW125","frequency":868.3,"gateways":[{"channel":1,"gtw_id":"olofs_rak831","gtw_trusted":true,"latitude":59.42305,"longitude":17.829903,"rf_chain":1,"rssi":-93,"snr":1,"time":"2018-05-10T12:43:03Z","timestamp":3551411564}],"modulation":"LORA","time":"2018-05-10T12:43:03.578587988Z"}
+                            myMarker.bindPopup(JSON.stringify(popup,null, 2));
+                            markers.push(myMarker);
                         }
+                        
                     });
                     });
                     firebaseAppDefined = true
@@ -236,6 +282,7 @@
                 }
                 }, 100)
 
+                var index=0;
 
                 setInterval(() => {
                     if (firebaseAppDefined) {
@@ -246,17 +293,50 @@
 
                          var my_data=doc.data();
                          if (my_data.data.lon && my_data.data.lat) {
-                            var tobj =  { 
-                            type: "Feature", 
-                            properties: { description: doc.meta, id: doc.id }, 
-                            geometry: { type: "Point", coordinates: [my_data.data.lon , my_data.data.lat , 0.0 ] } };
-                          L.geoJSON(tobj).addTo(map);
+                            var beerIcon = L.icon({
+                                iconUrl: 'images/beer.png',
+                                shadowUrl: 'images/beer_shadow.png',
+                                iconSize:     [64, 70], // size of the icon
+                                shadowSize:   [64, 70], // size of the shadow
+                                iconAnchor:   [22, 35], // point of the icon which will correspond to marker's location
+                                shadowAnchor: [22, 35],  // the same for the shadow
+                                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                            });
+
+                            //var tobj =  { 
+                            //type: "Feature", 
+                            //properties: { description: doc.meta, id: doc.id }, 
+                            //geometry: { type: "Point", coordinates: [my_data.data.lon , my_data.data.lat , 0.0 ] } };
+                            //L.geoJSON(tobj).addTo(map);
+                            var popup= { id : doc.id,
+                                      rate : my_data.meta.data_rate,
+                                      freq : my_data.meta.frequency,
+                                      gateways : []
+                                    }  
+                            if ("meta" in my_data ) {
+                                        for (var i in my_data.meta.gateways) {
+                                            console.log(my_data.meta.gateways[i].gtw_id);
+                                            popup.gateways.push(my_data.meta.gateways[i].gtw_id);
+                                        }
+                            }
+
+                            //"airtime":1482752000,"coding_rate":"4/5","data_rate":"SF12BW125","frequency":868.3,"gateways":[{"channel":1,"gtw_id":"olofs_rak831","gtw_trusted":true,"latitude":59.42305,"longitude":17.829903,"rf_chain":1,"rssi":-93,"snr":1,"time":"2018-05-10T12:43:03Z","timestamp":3551411564}],"modulation":"LORA","time":"2018-05-10T12:43:03.578587988Z"}
+                            if (index<markers.size) {
+                                var newLatLng = new L.LatLng(my_data.data.lon , my_data.data.lat);
+                                markers[index].setLatLng(newLatLng); 
+                                markers[index].bindPopup(JSON.stringify(popup,null,2));
+                                index++;
+                            } else {
+                                var myMarker=L.marker([ my_data.data.lat,my_data.data.lon], {icon: beerIcon}).addTo(map);
+                                myMarker.bindPopup(JSON.stringify(popup,null,2));
+                                markers.push(myMarker);
+                            }
+                            
                          }
 
-
-
                         });
                         });
+                        index=0;
                     }
                 }, 120000)
 
