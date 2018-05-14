@@ -150,11 +150,17 @@ void gdb_application_thread(void *pvParameters)
 
 void main_task(void *parameters);
 
+#include "soc/soc.h"
+#include "soc/rtc_cntl_reg.h"
+void disable_brownout(){
+WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); //disable brownout detector
+}
 
 void app_main()
 {
 
     ESP_ERROR_CHECK( nvs_flash_init() );
+    disable_brownout();
 
     initialise_wifi();
 
